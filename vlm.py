@@ -481,6 +481,12 @@ def main(input_dir, model="llava-hf/llava-1.5-7b-hf", precision="fp16",
             for decision, count in sorted(decision_count.items()):
                 percentage = count/len(existing_results)*100
                 print(f"   {decision}: {count}개 ({percentage:.1f}%)")
+            
+            # ✨ 파일 정리 옵션 추가
+            if organize_files:
+                print(f"\n📂 기존 결과로 파일 정리를 수행하시겠습니까? (y/n): ", end="")
+                if input().lower() == 'y':
+                    organize_files_by_decision(input_dir, existing_results, True)
         return
     
     # limit 적용
